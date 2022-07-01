@@ -1,0 +1,15 @@
+.today-card {
+  border: 1px solid red;
+  width: 80%;
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.today-card h2 {
+  margin: 0;
+  font-size: 60px;
+}
+
+.today-card svg {
+  font-size: 100px;
+}
