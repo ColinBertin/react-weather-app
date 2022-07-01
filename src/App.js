@@ -76,7 +76,7 @@ export default function App() {
         <h1>{city}</h1>
         <TodayCard today={today}/>
         <div className='previsions'>
-          {previsions.slice(1).map((prevision) => {
+          {previsions.slice(1, 6).map((prevision) => {
             const { dt, temp, weather, humidity } = prevision;
 
             return(
