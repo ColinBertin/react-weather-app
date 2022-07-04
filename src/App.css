@@ -1,7 +1,17 @@
 .App {
   padding: 60px 0;
   text-align: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+/* .App.day {
+  background-image: url('./assets/day1.webp');
+}
+
+.App.night {
+  background-image: url('./assets/night.webp');
+} */
 
 .previsions {
   width: 80%;

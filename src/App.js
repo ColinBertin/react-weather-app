@@ -7,17 +7,22 @@ import { PrevisionCards } from './components/Forecast/PrevisionCards/PrevisionCa
 
 export default function App() {
   const [city, setCity] = useState('Tokyo');
+  const [formatedCity, setFormatedCity] = useState('');
   const [query, setQuery] = useState('');
   const [today, setToday] = useState({});
-  const [previsions, setPrevisions] = useState([])
+  const [previsions, setPrevisions] = useState([]);
+  const [todayDate, setTodayDate] = useState('');
+  const [currentTime, setCurrentTime] = useState(6);
+
+
+  const date = new Date();
 
   const getCoords = async () => {
     const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=10&appid=${process.env.REACT_APP_API_KEY}`;
 
     const response = await fetch(url);
     const data = await response.json();
-
-    console.log(data)
+    setFormatedCity(`${data[0].name}, ${data[0].country}`)
 
     return data;
   };
@@ -28,10 +33,9 @@ export default function App() {
     const response = await fetch(url);
     const data = await response.json();
 
-    // console.log(lonlat[0].lat)
-
     return data;
   }
+
 
   useEffect(() => {
     const getWeather = async () => {
@@ -41,16 +45,27 @@ export default function App() {
         const weatherData = await getWeatherData(coords);
 
         setToday(weatherData.current);
-        setPrevisions(weatherData.daily)
-        // console.log(weatherData)
-        // console.log(weatherData.current)
-        console.log(weatherData.daily)
+        setPrevisions(weatherData.daily);
       } catch(error) {
         console.log(error.message)
       }
+    };
+    const getCurrentTime = () => {
+      const hours = date.getHours();
+      setCurrentTime(hours);
     }
+    getCurrentTime();
     getWeather();
   }, [city])
+
+  useEffect(() => {
+    const getTodayDate = () => {
+      const todayDate = date.getDate();
+      const month = date.getMonth() + 1;
+      setTodayDate(`${month}/${todayDate}`);
+    }
+    getTodayDate();
+  })
 
   const handleSearch = (e) => {
     if(e.key === "Enter") {
@@ -66,15 +81,18 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div className={`App ${(currentTime >= 6 && currentTime <= 18 ? 'day' : 'night')}`}>
       <SearchBar
         handleChange={handleChange}
         handleSearch={handleSearch}
         city={city}
       />
       <div className="weather">
-        <h1>{city}</h1>
-        <TodayCard today={today}/>
+        <h1>{formatedCity}</h1>
+        <TodayCard
+          today={today}
+          date={todayDate}
+        />
         <div className='previsions'>
           {previsions.slice(1, 6).map((prevision) => {
             const { dt, temp, weather, humidity } = prevision;
