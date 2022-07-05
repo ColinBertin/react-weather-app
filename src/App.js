@@ -4,6 +4,7 @@ import { SearchBar } from './components/SearchBar/SearchBar';
 import { TodayCard } from './components/Forecast/TodayCard/TodayCard';
 import { PrevisionCards } from './components/Forecast/PrevisionCards/PrevisionCards';
 
+let countCall = 0
 
 export default function App() {
   const [city, setCity] = useState('Tokyo');
@@ -24,6 +25,7 @@ export default function App() {
     const data = await response.json();
     setFormatedCity(`${data[0].name}, ${data[0].country}`)
 
+    countCall += 1;
     return data;
   };
 
@@ -33,6 +35,8 @@ export default function App() {
     const response = await fetch(url);
     const data = await response.json();
 
+    countCall += 1;
+    console.log(countCall)
     return data;
   }
 
@@ -46,6 +50,7 @@ export default function App() {
 
         setToday(weatherData.current);
         setPrevisions(weatherData.daily);
+        console.log(weatherData.daily)
       } catch(error) {
         console.log(error.message)
       }
@@ -96,12 +101,12 @@ export default function App() {
         <div className='previsions'>
           {previsions.slice(1, 6).map((prevision) => {
             const { dt, temp, weather, humidity } = prevision;
-
             return(
               <PrevisionCards
                 key={dt}
                 date={dt}
-                temp={temp.day}
+                max={temp.max}
+                min={temp.min}
                 weather={weather[0].main}
                 humidity={humidity}
               />

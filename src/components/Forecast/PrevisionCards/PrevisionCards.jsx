@@ -5,7 +5,7 @@ import { GiDrop } from 'react-icons/gi';
 
 import './PrevisionCards.css';
 
-export const PrevisionCards = ({ temp, weather, humidity, date }) => {
+export const PrevisionCards = ({ max, min, weather, humidity, date }) => {
   const [day, setDay] = useState();
   const [month, setMonth] = useState();
 
@@ -27,9 +27,9 @@ export const PrevisionCards = ({ temp, weather, humidity, date }) => {
   return (
     <div className='prevision-cards'>
       <p><AiOutlineCalendar/> {`${month}/${day}`}</p>
-      <h3><BsThermometerHalf/> {Math.floor(temp)}°</h3>
-      <p>{weather}</p>
-      <p><GiDrop/> {humidity}%</p>
+      <img src="http://openweathermap.org/img/wn/01d.png" alt={weather} />
+      <p>{Math.floor(max)}° / {Math.floor(min)}°</p>
+      {/* <p><GiDrop/> {humidity}%</p> */}
     </div>
   )
 }

@@ -24,6 +24,7 @@
 }
 
 .weather {
+  border: 1px solid green;
   margin: 0 auto;
-  max-width: 60%;
+  max-width: 50%;
 }

@@ -9,8 +9,10 @@ export const TodayCard = ({ today, date }) => {
       {Object.keys(today).length === 0 ? <p>Loading ...</p> :
         (
           <div className='today-card'>
-            <TiWeatherCloudy/>
-            <h2>{Math.floor(today.temp)}°</h2>
+            {/* <div className="today-card-temp"> */}
+              <TiWeatherCloudy/>
+              <h2>{Math.floor(today.temp)}°</h2>
+            {/* </div> */}
             <div className='today-card-body'>
               <p>{date}</p>
               <p>Humidity: {today.humidity}%</p>

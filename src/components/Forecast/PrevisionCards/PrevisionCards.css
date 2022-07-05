@@ -3,6 +3,6 @@
   border: 1px solid red;
 }
 
-.prevision-cards svg {
-  align-self: baseline;
+.prevision-cards img {
+  height: 80px;
 }
