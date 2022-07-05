@@ -1,5 +1,6 @@
 import React from 'react';
-import { TiWeatherCloudy } from 'react-icons/ti';
+import { iconSelect } from '../Icons';
+
 import './TodayCard.css';
 
 export const TodayCard = ({ today, date }) => {
@@ -9,10 +10,10 @@ export const TodayCard = ({ today, date }) => {
       {Object.keys(today).length === 0 ? <p>Loading ...</p> :
         (
           <div className='today-card'>
-            {/* <div className="today-card-temp"> */}
-              <TiWeatherCloudy/>
+            <div className="today-card-temp">
+              <img src={`http://openweathermap.org/img/wn/${iconSelect(today.weather[0].main)}`} alt={today.weather[0].main} />
               <h2>{Math.floor(today.temp)}°</h2>
-            {/* </div> */}
+            </div>
             <div className='today-card-body'>
               <p>{date}</p>
               <p>Humidity: {today.humidity}%</p>

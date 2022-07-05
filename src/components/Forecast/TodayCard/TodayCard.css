@@ -10,13 +10,14 @@
 .today-card h2 {
   margin: auto 0;
   padding: 0;
-  font-size: 40px;
+  font-size: 50px;
 }
 
-.today-card svg {
-  font-size: 100px;
+.today-card img {
+  height: 300px;
+  width: auto;
 }
 
 .today-card-temp {
-  text-align: center;
+  display: flex;
 }

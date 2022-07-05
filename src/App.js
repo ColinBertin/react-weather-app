@@ -50,7 +50,7 @@ export default function App() {
 
         setToday(weatherData.current);
         setPrevisions(weatherData.daily);
-        console.log(weatherData.daily)
+        console.log(weatherData.current)
       } catch(error) {
         console.log(error.message)
       }
