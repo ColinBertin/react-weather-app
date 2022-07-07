@@ -1,5 +1,4 @@
 import React from 'react';
-import { iconSelect } from '../Icons';
 
 import './TodayCard.css';
 
@@ -11,7 +10,7 @@ export const TodayCard = ({ today, date }) => {
         (
           <div className='today-card'>
             <div className="today-card-temp">
-              <img src={`http://openweathermap.org/img/wn/${iconSelect(today.weather[0].main)}`} alt={today.weather[0].main} />
+              <img src={`http://openweathermap.org/img/wn/${today.weather[0].icon}.png`} alt={today.weather[0].main} />
               <h2>{Math.floor(today.temp)}°</h2>
             </div>
             <div className='today-card-body'>

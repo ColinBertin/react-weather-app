@@ -108,6 +108,7 @@ export default function App() {
                 max={temp.max}
                 min={temp.min}
                 weather={weather[0].main}
+                icon={weather[0].icon}
                 humidity={humidity}
               />
             )
